@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<ruleset name="NextPressModern">
+
+		<description>Modern coding standards for newer NextPress code.</description>
+
+		<!-- Base arguments -->
+		<arg name="colors"/>
+ 		<arg value="sp"/>
+
+		<!-- Base Laravel Coding Style Standards -->
+    <rule ref="./vendor/fossbarrow/laravel-phpcs/phpcs.xml"/>
+
+		<!-- General rules -->
+		<rule ref="Squiz.PHP.NonExecutableCode"/>
+  	<rule ref="Squiz.Scope.StaticThisUsage"/>
+		<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+		<rule ref="Generic.Classes.DuplicateClassName"/>
+		<rule ref="Generic.NamingConventions.ConstructorName"/>
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
+		<rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+
+		<!-- Core WordPress Styles -->
+		<!-- <rule ref="WordPress.NamingConventions.ValidFunctionName"/> -->
+		<rule ref="WordPress.NamingConventions.ValidHookName"/>
+
+		<!-- DocBlock Styles -->
+		<rule ref="Squiz.Commenting.FileComment">
+				<exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
+		</rule>
+		<rule ref="PEAR.Commenting.InlineComment"/>
+		<rule ref="Squiz.Commenting.LongConditionClosingComment.SpacingBefore"/>
+		<rule ref="Squiz.Commenting.DocCommentAlignment" />
+		<rule ref="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+    <rule ref="Squiz.Commenting.BlockComment"/>
+    <rule ref="Generic.Commenting.DocComment"/>
+    <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Generic.Commenting.Fixme"/>
+
+		<!-- Other rules -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+
+		<!-- Array formatting is super important -->
+		<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+		<rule ref="Universal.Arrays.DuplicateArrayKey"/>
+		<rule ref="WordPress.Arrays.ArrayIndentation"/>
+		<rule ref="WordPress.Arrays.MultipleStatementAlignment"/>
+		<rule ref="NormalizedArrays.Arrays.CommaAfterLast"/>
+		<rule ref="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
+
+		<!-- Line Lengths -->
+		<rule ref="Generic.Files.LineLength.MaxExceeded">
+			<message>Line contains %2$s chars, which is more than the limit of %1$s</message>
+		</rule>
+		<rule ref="Generic.Files.LineLength.TooLong">
+			<message>Line longer than %s characters; contains %s characters</message>
+		</rule>
+		<rule ref="Generic.Files.LineLength">
+			<properties>
+				<property name="lineLimit" value="90"/>
+				<property name="absoluteLineLimit" value="120"/>
+			</properties>
+		</rule>
+
+		<!-- Code quality rules -->
+
+		<!-- Ban some functions -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="sizeof" value="count"/>
+                <element key="delete" value="unset"/>
+                <element key="print" value="echo"/>
+                <element key="is_null" value="null"/>
+                <element key="create_function" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- We allow empty catch statements -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCATCH">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Squiz.WhiteSpace.LanguageConstructSpacing is deprecated -->
+    <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing">
+        <severity>0</severity>
+    </rule>
+
+</ruleset>
